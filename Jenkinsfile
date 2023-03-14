@@ -17,12 +17,10 @@ pipeline{
       }
     }//Deploy
     stage('Email'){
-      steps{
-        input("Do you need send email?")
         steps{
+          input("Do you need send email?")
           mail bcc: '', body: 'Job: ${env.JOB_NAME}\nBuild number :${env.BUILD_NUMBER}\n Build URL: ${env.BUILD_URL} ', cc: '', from: '', replyTo: '', subject: 'Testing purpose', to: ' saurabh29aws12sa@gmail.com'
         }
-      }
-    }//Results
+    }//Email
   }//stages
 }//pipeline
