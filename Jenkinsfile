@@ -6,10 +6,10 @@ pipeline{
         parallel(
           Build:{
             echo "Buil stage"
-          }
+          },
           Test:{
             echo "Test stage"
-          }
+          },
           Deploy:{
             echo "Deploy stage"
           }
