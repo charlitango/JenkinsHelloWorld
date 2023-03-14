@@ -16,11 +16,9 @@ pipeline{
         echo "Deploying"
       }
     }//Deploy
-    stage('Consolidate results'){
+    stage('Email'){
       steps{
-        input("Do you need to capture results?")
-        junit '**/target/surefire-reports/Test-*.xml'
-        archive 'target/*.jar'
+        input("Do you need send email?")
       }
     }//Results
   }//stages
