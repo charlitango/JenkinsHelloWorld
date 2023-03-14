@@ -16,5 +16,12 @@ pipeline{
         echo "Deploying"
       }
     }//Deploy
+    stage('Consolidate results'){
+      steps{
+        input("Do you need to capture results?")
+        junit '**/target/surefire-reports/Test-*.xml'
+        archive 'target/*.jar'
+      }
+    }//Results
   }//stages
 }//pipeline
