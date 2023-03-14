@@ -1,26 +1,20 @@
 pipeline{
   agent any
   stages{
-    stage('Build'){
+    stage('Parallel Execution'){
       steps{
-        echo "Building"
-      }
-    }//Build
-    stage('Test'){
-      steps{
-        echo "Testing"
-      }
-    }//Test
-    stage('Deploy'){
-      steps{
-        echo "Deploying"
-      }
-    }//Deploy
-    stage('Email'){
-        steps{
-          input("Do you need send email?")
-          mail bcc: '', body: 'Job: ${env.JOB_NAME}\nBuild number :${env.BUILD_NUMBER}\n Build URL: ${env.BUILD_URL} ', cc: '', from: '', replyTo: '', subject: 'Testing purpose', to: ' saurabh29aws12sa@gmail.com'
-        }
-    }//Email
+        parallel(
+          Build:{
+            echo "Buil stage"
+          }
+          Test:{
+            echo "Test stage"
+          }
+          Deploy:{
+            echo "Deploy stage"
+          }
+        )
+    }
+  }
   }//stages
 }//pipeline
